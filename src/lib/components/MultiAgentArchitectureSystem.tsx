@@ -1530,12 +1530,12 @@ Enterprise-resilient architecture spanning multiple cloud providers and edge loc
                     </div>
                   </div>
 
-                  {/* Project Configuration */}
-                  <div className="space-y-3">
+{/* Project Configuration */}
+<div className="space-y-3 relative z-50">
                     <motion.button
                       onClick={() => setIsConfigExpanded(!isConfigExpanded)}
                       className="w-full text-xs font-semibold text-gray-600 flex items-center justify-center space-x-2
-                                 hover:text-indigo-600 transition-colors duration-300 py-2 rounded-lg hover:bg-gray-50/50"
+                                 hover:text-indigo-600 transition-colors duration-300 py-2 rounded-lg hover:bg-gray-50/50 relative z-10"
                     >
                       <motion.div
                         animate={{ rotate: [0, 360] }}
@@ -1560,14 +1560,14 @@ Enterprise-resilient architecture spanning multiple cloud providers and edge loc
                           animate={{ opacity: 1, height: 'auto' }}
                           exit={{ opacity: 0, height: 0 }}
                           transition={{ duration: 0.3 }}
-                          className="overflow-hidden"
+                          className="overflow-visible relative z-40"
                         >
                           <div className="grid grid-cols-2 gap-4">
                             <motion.div
                               initial={{ opacity: 0, x: -20 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: 0.1 }}
-                              className="space-y-2"
+                              className="space-y-2 relative z-20"
                             >
                               <label className="text-sm font-semibold text-gray-600 flex items-center space-x-2">
                                 <Building2 className="w-4 h-4 text-indigo-600" />
@@ -1581,7 +1581,7 @@ Enterprise-resilient architecture spanning multiple cloud providers and edge loc
                                 icon={Building2}
                                 gradientFrom="from-blue-500"
                                 gradientTo="to-indigo-600"
-                                zIndex="z-[40]"
+                                zIndex="z-[57]"
                               />
                             </motion.div>
 
@@ -1589,7 +1589,7 @@ Enterprise-resilient architecture spanning multiple cloud providers and edge loc
                               initial={{ opacity: 0, x: -20 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: 0.2 }}
-                              className="space-y-2"
+                              className="space-y-2 relative z-30"
                             >
                               <label className="text-sm font-semibold text-gray-600 flex items-center space-x-2">
                                 <Target className="w-4 h-4 text-green-600" />
@@ -1603,7 +1603,7 @@ Enterprise-resilient architecture spanning multiple cloud providers and edge loc
                                 icon={Target}
                                 gradientFrom="from-green-500"
                                 gradientTo="to-emerald-600"
-                                zIndex="z-[39]"
+                                zIndex="z-[58]"
                               />
                             </motion.div>
 
@@ -1611,7 +1611,7 @@ Enterprise-resilient architecture spanning multiple cloud providers and edge loc
                               initial={{ opacity: 0, x: -20 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: 0.3 }}
-                              className="space-y-2"
+                              className="space-y-2 relative z-40"
                             >
                               <label className="text-sm font-semibold text-gray-600 flex items-center space-x-2">
                                 <DollarSign className="w-4 h-4 text-purple-600" />
@@ -1625,7 +1625,7 @@ Enterprise-resilient architecture spanning multiple cloud providers and edge loc
                                 icon={DollarSign}
                                 gradientFrom="from-purple-500"
                                 gradientTo="to-pink-600"
-                                zIndex="z-[60]"
+                                zIndex="z-[59]"
                               />
                             </motion.div>
 
@@ -1633,7 +1633,7 @@ Enterprise-resilient architecture spanning multiple cloud providers and edge loc
                               initial={{ opacity: 0, x: -20 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: 0.4 }}
-                              className="space-y-2"
+                              className="space-y-2 relative z-50"
                             >
                               <label className="text-sm font-semibold text-gray-600 flex items-center space-x-2">
                                 <Users className="w-4 h-4 text-orange-600" />
@@ -1647,7 +1647,7 @@ Enterprise-resilient architecture spanning multiple cloud providers and edge loc
                                 icon={Users}
                                 gradientFrom="from-orange-500"
                                 gradientTo="to-red-600"
-                                zIndex="z-[59]"
+                                zIndex="z-[60]"
                               />
                             </motion.div>
                           </div>
