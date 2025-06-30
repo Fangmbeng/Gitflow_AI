@@ -278,68 +278,68 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Handle streaming responses (for future implementation)
-export async function POST_STREAM(request: NextRequest) {
-  try {
-    const body = await request.json();
-    const { model = 'gpt-4-turbo-preview', messages, temperature = 0.7 } = body;
+// // Handle streaming responses (for future implementation)
+// export async function POST_STREAM(request: NextRequest) {
+//   try {
+//     const body = await request.json();
+//     const { model = 'gpt-4-turbo-preview', messages, temperature = 0.7 } = body;
 
-    if (!process.env.OPENAI_API_KEY) {
-      throw new Error('OpenAI API key not configured');
-    }
+//     if (!process.env.OPENAI_API_KEY) {
+//       throw new Error('OpenAI API key not configured');
+//     }
 
-    const stream = await openai.chat.completions.create({
-      model,
-      messages,
-      temperature,
-      stream: true,
-    });
+//     const stream = await openai.chat.completions.create({
+//       model,
+//       messages,
+//       temperature,
+//       stream: true,
+//     });
 
-    const encoder = new TextEncoder();
+//     const encoder = new TextEncoder();
     
-    const readableStream = new ReadableStream({
-      async start(controller) {
-        try {
-          for await (const chunk of stream) {
-            const content = chunk.choices[0]?.delta?.content || '';
-            if (content) {
-              const data = `data: ${JSON.stringify({ content })}\n\n`;
-              controller.enqueue(encoder.encode(data));
-            }
-          }
-          controller.enqueue(encoder.encode('data: [DONE]\n\n'));
-          controller.close();
-        } catch (error) {
-          controller.error(error);
-        }
-      },
-    });
+//     const readableStream = new ReadableStream({
+//       async start(controller) {
+//         try {
+//           for await (const chunk of stream) {
+//             const content = chunk.choices[0]?.delta?.content || '';
+//             if (content) {
+//               const data = `data: ${JSON.stringify({ content })}\n\n`;
+//               controller.enqueue(encoder.encode(data));
+//             }
+//           }
+//           controller.enqueue(encoder.encode('data: [DONE]\n\n'));
+//           controller.close();
+//         } catch (error) {
+//           controller.error(error);
+//         }
+//       },
+//     });
 
-    return new Response(readableStream, {
-      headers: {
-        'Content-Type': 'text/event-stream',
-        'Cache-Control': 'no-cache',
-        'Connection': 'keep-alive',
-      },
-    });
+//     return new Response(readableStream, {
+//       headers: {
+//         'Content-Type': 'text/event-stream',
+//         'Cache-Control': 'no-cache',
+//         'Connection': 'keep-alive',
+//       },
+//     });
 
-  } catch (error) {
-    console.error('Streaming LLM API Error:', error);
-    return NextResponse.json(
-      { 
-        success: false, 
-        error: 'Streaming failed' 
-      },
-      { status: 500 }
-    );
-  }
-}
+//   } catch (error) {
+//     console.error('Streaming LLM API Error:', error);
+//     return NextResponse.json(
+//       { 
+//         success: false, 
+//         error: 'Streaming failed' 
+//       },
+//       { status: 500 }
+//     );
+//   }
+// }
 
-// Health check endpoint
-export async function GET() {
-  return NextResponse.json({
-    status: 'healthy',
-    timestamp: new Date().toISOString(),
-    openai_configured: !!process.env.OPENAI_API_KEY
-  });
-}
+// // Health check endpoint
+// export async function GET() {
+//   return NextResponse.json({
+//     status: 'healthy',
+//     timestamp: new Date().toISOString(),
+//     openai_configured: !!process.env.OPENAI_API_KEY
+//   });
+// }
